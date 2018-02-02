@@ -1,0 +1,7 @@
+.idea
+data
+vendor
+log
+test
+__pycache__
+desktop.ini 
