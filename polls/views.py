@@ -37,9 +37,8 @@ def results(request, question_id):
 def vote(request,question_id=0):
     p = get_object_or_404(Question,pk=question_id)
     try:
-        selected_choice = p.choice_set.get(request.POST['choice'])
-        return HttpResponse(selected_choice)
-    except Choice.DoesNotExist:
+        selected_choice = p.choice_set.get(pk=request.POST['choice'])
+    except (KeyError, Choice.DoesNotExist):
         return HttpResponse('你好')
         return render(request, 'polls/detail.html', {
             'question': p,
