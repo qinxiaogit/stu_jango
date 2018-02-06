@@ -45,7 +45,7 @@ def vote(request,question_id=0):
             'error_message': "You didn't select a choice.",
         })
     else:
-        selected_choice.votes += 1
+        selected_choice.vote += 1
         selected_choice.save()
         return HttpResponse(selected_choice)
         # Always return an HttpResponseRedirect after successfully dealing
