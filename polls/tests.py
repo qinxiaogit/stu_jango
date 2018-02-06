@@ -23,7 +23,7 @@ from .models import Question
 #         recent_question = Question(pub_date=time)
 #         self.assertEqual(recent_question.was_published_recently(), True)
 
-def Create_question(question_text,days):
+def create_question(question_text,days):
     time = timezone.now()+datetime.timedelta(days=days)
     return Question.objects.Create(question_text=question_text,pub_date=time)
 
