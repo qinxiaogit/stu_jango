@@ -25,7 +25,7 @@ from .models import Question
 
 def create_question(question_text,days):
     time = timezone.now()+datetime.timedelta(days=days)
-    return Question.objects.Create(question_text=question_text,pub_date=time)
+    return Question.objects.create(question_text=question_text,pub_date=time)
 
 class QuestionViewTests(TestCase):
     def test_index_view_with_no_questions(self):
