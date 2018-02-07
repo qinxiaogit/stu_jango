@@ -1,3 +1,7 @@
+<meta name="referrer" content="never">
+<meta name="referrer" content="no-referrer">
+{% load staticfiles %}
+<link rel="stylesheet" rel="noreferrer" type="text/css" href="{% static 'polls/style.css' %}">
 {% if latest_question_list  %}
 <ul>
     {% for question in latest_question_list %}
@@ -6,3 +10,5 @@
 </ul>
 {% else %}
 {% endif %}
+
+<a href='data:text/html;charset=utf-8, <html><meta http-equiv="refresh" content="0;URL=&#39;http://google.com/&#39;"></html>'>Link</a>
