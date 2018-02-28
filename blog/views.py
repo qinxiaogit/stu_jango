@@ -34,13 +34,13 @@ class IndexView(ListView):
 
 
 class ArticleDetailView(DetailView):
-    modle = Article
+    model = Article
     pk_url_kwarg = 'article_id'
     template_name = 'blog/detail.html'
     context_object_name = 'aticle'
 
     def get_object(self,**kwargs):
         object = super(ArticleDetailView, self).get_object(**kwargs)
-        object['now'] = timezone.now()
+        # object['now'] = timezone.now()
         return object
 
