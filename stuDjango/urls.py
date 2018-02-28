@@ -17,7 +17,8 @@ from django.conf.urls import url,include
 from django.contrib import admin
 
 urlpatterns = [
-    # url(r'^$',include('home.urls',namespace='home')),
+    url(r'^$',include('home.urls',namespace='home')),
     url(r'^admin/', admin.site.urls),
-    url(r'^polls/',include('polls.urls',namespace='polls'))
+    url(r'^polls/',include('polls.urls',namespace='polls')),
+    url(r'^blog/',include('blog.urls',namespace='blog',app_name='blog'))
 ]
