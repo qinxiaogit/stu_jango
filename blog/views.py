@@ -58,11 +58,23 @@ class ArticleDetailView(DetailView):
     model = Article
     pk_url_kwarg = 'article_id'
     template_name = 'blog/detail.html'
-    context_object_name = 'aticle'
+    context_object_name = 'article'
 
     def get_object(self,**kwargs):
         object = super(ArticleDetailView, self).get_object(**kwargs)
         return object
+
+    def get_context_data(self,**kwargs):
+        context = super(ArticleDetailView, self).get_context_data(**kwargs)
+        category_list = Category.objects.all()
+        context.update({
+            'category_list': category_list
+        })
+        return context
+
+
+class CategoryDetailView(DetailView):
+    pass
 
 
 

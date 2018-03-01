@@ -1,7 +1,28 @@
-<h1>标题：{{ aticle.title }}</h1>
-dsdfgf
-{{ article.last_modified_time|date:"Y年n月d日" }}
-{{ article.create_time|date:"Y年n月d日" }}
-{{ article.create_time}}
-<script>
-</script>
+{% extends "blog/base.html" %}
+{% block title %}{{ article.title }} {% endblock %}
+{% block category_type %}
+    {% for category in category_list %}
+        <a class="navbar-brand"  href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
+    {% endfor%}
+{% endblock %}
+{% block page %}
+{{ block.super }}
+<div id="bd" class="wrp clear-fix">
+    <div id="main">
+        <div id="post-1951"
+             class="post-1951 post type-post status-publish format-standard hentry category-meida-report">
+            <div class="post-hd">
+                <h1 class="title">{{ article.title }}</h1>
+            </div>
+            <div class="date-read">
+                <i class="icon-date"></i><span class="date">{{ article.last_modified_time|date:"Y年n月d日" }}</span>
+            </div>
+            <div class="post-bd">
+                {{ article.body |safe }}
+            </div>
+        </div>
+    </div>
+</div>
+<div id="previous-next-nav">
+</div>
+{% endblock %}
