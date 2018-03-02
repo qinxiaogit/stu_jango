@@ -22,8 +22,8 @@ class Article(models.Model):
     views = models.PositiveIntegerField('浏览量',default=0)
     topped = models.BooleanField('置顶',default=False)
 
-    category = models.ForeignKey('Category',verbose_name="分类",
-                                 null=True,on_delete=models.SET_NULL
+    category = models.ForeignKey('Category',verbose_name="分类"
+                                 ,null=True,on_delete=models.SET_NULL
                                  )
 
     def __str__(self):
@@ -43,3 +43,10 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+"""
+    文章评论
+"""
+class Comment(models.Model):
+    title = models.CharField('标题',max_length=20)
+    create_time = models.DateTimeField('添加时间',auto_now_add=True);
+    # context = models.

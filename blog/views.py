@@ -42,7 +42,8 @@ class IndexView(ListView):
 
     def get_queryset(self):
         #get_queryset 的作用已在第一篇中有介绍，不再赘述
-        article_list = Article.objects.filter(status='p')
+        category = Category.objects.all()[:1];
+        article_list = Article.objects.filter(status='p',category=category[0].id)
         # 注意在url里我们捕获了分类的id作为关键字参数（cate_id）传递给了CategoryView，传递的参数在kwargs属性中获取。
         # for article in article_list:
         #     article.body = markdown2.markdown(article.body, )
@@ -74,7 +75,16 @@ class ArticleDetailView(DetailView):
 
 
 class CategoryDetailView(DetailView):
-    pass
+    model = Category
+    pk_url_kwarg = 'category_id';
+    template_name = "blog/category.html"
+    context_object_name = 'category'
+
+    def get_object(self,**kwargs):
+        object = super(CategoryDetailView, self).get_object(**kwargs)
+        object.article_list= Article.objects.filter(status='p',category=object.pk)
+        return object
+
 
 
 

@@ -1,10 +1,13 @@
 {% extends "blog/base.html" %}
 {% block title %}{{ article.title }} {% endblock %}
-{% block category_type %}
+
+<ul class="nav">
     {% for category in category_list %}
-        <a class="navbar-brand"  href="{% url 'blog:category' category.pk %}">{{ category.name }}</a>
-    {% endfor%}
-{% endblock %}
+    <li class="nav-item">
+        <a class="nav-link {% if category.pk == category_list.0.pk  %}active{% endif %}" style="color:{% if category.pk != 1  %} #211d1d {% endif %}" href="{% url 'blog:category' category.pk%}">{{ category.name }}</a>
+    </li>
+    {% endfor %}
+</ul>
 {% block page %}
 {{ block.super }}
 <div id="bd" class="wrp clear-fix">

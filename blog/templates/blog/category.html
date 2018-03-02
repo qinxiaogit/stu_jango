@@ -1,0 +1,17 @@
+{% extends "blog/base.html" %}
+{% block page %}
+
+<ul class="nav">
+    {% for ca in category.article_list %}
+    <li class="nav-item">
+        <a class="nav-link {% if ca.pk == category.article_list.0.pk  %}active{% endif %}" style="color:{% if ca.pk != category.article_list.0.pk  %} #211d1d {% endif %}" href="{% url 'blog:detail' ca.pk%}">
+            {{ ca.title }}
+        </a>
+    </li>
+    {% endfor %}
+</ul>
+{% if category.article_list %}
+
+    {{category.article_list.0}}
+{% endif %}
+{% endblock %}

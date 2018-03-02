@@ -1,9 +1,18 @@
 {% extends "blog/base.html" %}
-    {% block stylesheets %}
-        {% for article in article_list %}
-        <h1 class="title">
-            <a href="{% url 'blog:detail' article.pk %}">{{ article.title }}</a><span>{{ article.create_time|date:"Y-m-d" }}</span>
-        </h1>
+{% block page %}
+<ul class="nav">
+    {% for category in category_list %}
+        <li class="nav-item">
+            <a class="nav-link {% if category.pk == category_list.0.pk  %}active{% endif %}" style="color:{% if category.pk != 1  %} #211d1d {% endif %}" href="{% url 'blog:category' category.pk%}">{{ category.name }}</a>
+        </li>
     {% endfor %}
+</ul>
+<ul class="list-group">
+    {% for article in article_list%}
+        <a class="list-group-item list-group-item-action {% if article.pk == article_list.0.pk %} active{% endif %} " href="{% url 'blog:detail' article.pk %}">
+            {{ article.title }}
+        </a>
+    {% endfor %}
+</ul>
 {% endblock %}
 
